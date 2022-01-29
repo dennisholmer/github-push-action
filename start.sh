@@ -14,7 +14,7 @@ echo "Push to branch $INPUT_BRANCH";
 };
 
 if ${INPUT_FORCE}; then
-    _FORCE_OPTION='--force'
+    _FORCE_OPTION='--force-with-lease'
 fi
 
 if ${INPUT_TAGS}; then
@@ -24,5 +24,7 @@ fi
 cd ${INPUT_DIRECTORY}
 
 remote_repo="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${REPOSITORY}.git"
+
+git pull "${remote_repo}" HEAD:${INPUT_BRANCH} --rebase
 
 git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS;
