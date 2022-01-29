@@ -9,6 +9,12 @@ With ease:
 - publish page using GitHub-Pages,
 - mirror changes to a separate repository.
 
+## Original repo
+This is a fork from
+[ad-m/github-push-action](https://github.com/ad-m/github-push-action)
+
+This repo differs by adding `git pull` before push.
+
 ## Usage
 
 ### Example Workflow file
@@ -33,7 +39,7 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git commit -m "Add changes" -a
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: dennisholmer/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
